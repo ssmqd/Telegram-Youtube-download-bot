@@ -22,9 +22,9 @@ async def close_kb(message: types.Message):
 async def load_url(message: types.Message):
     if message.from_user.id == ID:
         video = YouTube(message.text).streams.filter(only_audio=True).first()
-        pas = f'/poggg/audio/audiof/{video.title}.mp3'
+        pas = f'/poggg/audio/AYFF/audiof/{video.title}.mp3'
         try:
-            out_file = video.download(output_path='/poggg/audio/audiof')
+            out_file = video.download(output_path='/poggg/audio/AYFF/audiof')
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
             os.rename(out_file, new_file)
@@ -50,7 +50,7 @@ async def element(message: types.Message):
 @dp.callback_query_handler(lambda x: x.data and x.data.startswith('del '))
 async def delete_element(callback_query: types.CallbackQuery):
     if callback_query.from_user.id == ID:
-        os.remove(f"/poggg/audio/audiof/{callback_query.data.replace('del ', '')}")
+        os.remove(f"/poggg/audio/AYFF/audiof/{callback_query.data.replace('del ', '')}")
         await callback_query.answer(text=f'{callback_query.data.replace("del ", "")} deleted.', show_alert=True)
     else:
         await callback_query.message.answer(f'You dont have permission {callback_query.from_user.first_name}')
@@ -58,14 +58,14 @@ async def delete_element(callback_query: types.CallbackQuery):
 
 @dp.callback_query_handler(lambda x: x.data and x.data.startswith('group '))
 async def load_group(callback_query: types.CallbackQuery):
-    pas = f'/poggg/audio/audiof/{callback_query.data.replace("group ", "")}'
+    pas = f'/poggg/audio/AYFF/audiof/{callback_query.data.replace("group ", "")}'
     await bot.send_audio('-802746227', audio=open(pas, 'rb'))
     await callback_query.answer(text=f'{callback_query.data.replace("group ", "")} uploaded.', show_alert=True)
 
 
 @dp.callback_query_handler(lambda x: x.data and x.data.startswith('load '))
 async def load_element(callback_query: types.CallbackQuery):
-    pas = f'/poggg/audio/audiof/{callback_query.data.replace("load ", "")}'
+    pas = f'/poggg/audio/AYFF/audiof/{callback_query.data.replace("load ", "")}'
     await bot.send_audio(callback_query.from_user.id, audio=open(pas, 'rb'))
     await callback_query.answer(text=f'{callback_query.data.replace("load ", "")} uploaded.', show_alert=True)
 
