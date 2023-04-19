@@ -22,7 +22,7 @@ async def close_kb(message: types.Message):
 async def load_url(message: types.Message):
     if message.from_user.id == ID:
         video = YouTube(message.text).streams.filter(only_audio=True).first()
-        pas = f'/poggg/audio/AYFF/audiof/{video.title}.mp3'
+        pas = f'collection/{video.title}.mp3'
         try:
             out_file = video.download(output_path='/poggg/audio/AYFF/audiof')
             base, ext = os.path.splitext(out_file)
